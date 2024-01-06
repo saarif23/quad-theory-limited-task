@@ -25,9 +25,17 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
+  width: {
+    xs: 300,
+    sm: 400,
+    lg: 600,
+  },
   bgcolor: "background.paper",
-  p: 4,
+  p: {
+    xs: 2,
+    sm: 3,
+    lg: 4,
+  },
 };
 
 const PopularItem = () => {
@@ -96,8 +104,7 @@ const PopularItem = () => {
           popularItems.push(newItem);
           recomandedItems.push(newItem);
           formik.resetForm();
-          return
-
+          return;
         }
         if (values.IsPopular === "true") {
           popularItems.push(newItem);
@@ -246,9 +253,9 @@ const PopularItem = () => {
               <button
                 onClick={handleClose}
                 type="submit"
-                className="bg-fuchsia-500 rounded cursor-pointer hover:bg-fuchsia-700  py-2 px-5 w-full text-white font-bold text-lg"
+                className="bg-[#FF9800] rounded cursor-pointer  py-2 px-5 w-full text-white font-bold text-lg"
               >
-                Submit
+                Add Item
               </button>
             </form>
           </Box>
