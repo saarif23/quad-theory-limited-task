@@ -11,7 +11,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 const Footer = () => {
   return (
-    <div className="bg-[#FF9800] mt-36 pb-10">
+    <div className="bg-[#FF9800] lg:mt-36 pb-10">
       <Container
         sx={{
           maxWidth: {
@@ -19,51 +19,77 @@ const Footer = () => {
             sm: "sm",
             lg: "lg",
           },
-          display: "flex",
+          display: {
+            lg: "flex",
+          },
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <div className="relative pl-20 ">
+        <div className="relative lg:pl-20 max-lg:pt-10 ">
           <input
-            className="py-3 px-3 rounded-xl w-[500px] text-sm shadow-xl"
+            className="py-3 px-3 rounded-xl w-[380px] mx-auto lg:w-[500px] text-sm shadow-xl"
             type="text"
             placeholder="Enter Your Email"
           ></input>
-          <div className="absolute top-0 text-xs  py-1 px-5 cursor-pointer rounded-xl bg-[#ef4618ec] text-white/80 transform right-24 mr-3 mt-2 normal-case">
+          <div className="absolute lg:top-0 max-lg:top-10 max-lg:right-5 text-xs  py-1 px-5 cursor-pointer rounded-xl max-lg:font-bold text-[#ef4618ec] lg:bg-[#ef4618ec] lg:text-white/80 transform lg:right-24 mr-3 mt-2 normal-case">
             Subscribe
             <EastIcon fontSize="small" />
           </div>
-          <div className="mt-16 w-[600px]">
-            <Typography variant="h4" fontWeight={800} color="initial">
+          <div className="lg:mt-16 w-[350px] lg:w-[600px]">
+            <Typography
+              variant="h4"
+              fontWeight={800}
+              color="initial"
+              className="max-lg:hidden"
+            >
               pti<span className="text-[#ef4618ec]">.</span>
             </Typography>
             <Box
               sx={{
                 display: "flex",
+                flexDirection: {
+                  xs: "column-reverse",
+                  lg: "row",
+                },
                 justifyContent: "space-between",
                 alignItems: "center",
+                margin: "30px 0",
               }}
             >
-              <Typography variant="body2" fontWeight={600} marginTop={2}>
-                Copyright©Tripp.All Right Reserved
-              </Typography>
+              <Box
+                sx={{
+                  textAlign: "center",
+                }}
+              >
+                <Typography
+                  variant="h4"
+                  fontWeight={800}
+                  color="initial"
+                  className="md:hidden my-5"
+                >
+                  pti<span className="text-[#ef4618ec]">.</span>
+                </Typography>
+                <Typography variant="body2" fontWeight={600} marginTop={2}>
+                  Copyright©Tripp.All Right Reserved
+                </Typography>
+              </Box>
               <Box>
                 <IconButton
                   aria-label="google"
-                  className="text-[#ef4618ec] bg-white/70 mr-2"
+                  className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
                 >
                   <GoogleIcon fontSize="small" />
                 </IconButton>
                 <IconButton
                   aria-label="twitter"
-                  className="text-[#ef4618ec] bg-white/70 mr-2"
+                  className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
                 >
                   <TwitterIcon fontSize="small" />
                 </IconButton>
                 <IconButton
                   aria-label="instragram"
-                  className="text-[#ef4618ec] bg-white/70 mr-2"
+                  className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
                 >
                   <InstagramIcon fontSize="small" />
                 </IconButton>
@@ -72,7 +98,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="">
+        <div className="max-lg:hidden">
           <Image src={footerImage} alt="footerImage" width={300} height={400} />
         </div>
       </Container>
