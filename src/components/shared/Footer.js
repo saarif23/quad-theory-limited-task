@@ -28,7 +28,7 @@ const Footer = () => {
       >
         <div className="relative lg:pl-20 max-lg:pt-10 ">
           <input
-            className="py-3 px-3 rounded-xl w-[380px] mx-auto lg:w-[500px] text-sm shadow-xl"
+            className="py-3 px-3 rounded-xl max-md:px-5 w-[380px] mx-auto lg:w-[500px] text-sm shadow-xl"
             type="text"
             placeholder="Enter Your Email"
           ></input>
@@ -36,7 +36,7 @@ const Footer = () => {
             Subscribe
             <EastIcon fontSize="small" />
           </div>
-          <div className="lg:mt-16 w-[350px] lg:w-[600px]">
+          <div className="lg:mt-14 w-[350px] lg:w-[600px]">
             <Typography
               variant="h4"
               fontWeight={800}
@@ -54,7 +54,7 @@ const Footer = () => {
                 },
                 justifyContent: "space-between",
                 alignItems: "center",
-                margin: "30px 0",
+                margin: "15px 0",
               }}
             >
               <Box

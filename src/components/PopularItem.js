@@ -7,16 +7,38 @@ import Image from "next/image";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Button } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+
+//
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "background.paper",
+  p: 4,
+};
+
 const PopularItem = () => {
   const [popularItems, setPopularItems] = useState([]);
   const [recomandedItems, setRecomandedItems] = useState([]);
+
+  //
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   useEffect(() => {
     const getAllItems = async () => {
       const { Items } = await getPopularItem();
@@ -33,6 +55,66 @@ const PopularItem = () => {
   //   console.log(popularItems);
   //   console.log(recomandedItems);
 
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      price: "",
+      imageUrl: "",
+      IsPopular: "",
+      IsRecommended: "",
+    },
+
+    validationSchema: yup.object({
+      name: yup
+        .string()
+        .min(3, "Item name have must atleast 3 characters")
+        .required(),
+      price: yup.number().required(),
+      imageUrl: yup
+        .string()
+        .min(10, "Image URL  have must atleast 10 characters")
+        .required(),
+      IsPopular: yup.boolean().required(),
+      IsRecommended: yup.boolean().required(),
+    }),
+    onSubmit: async (values) => {
+      // console.log(values.name);
+      // console.log(values.price);
+      // console.log(values.imageUrl);
+      // console.log(values.IsPopular);
+      // console.log(values.IsRecommended);
+
+      try {
+        const newItem = {
+          Name: values.name,
+          Price: parseInt(values.price),
+          ImageUrl: values.imageUrl,
+          IsPopular: values.IsPopular,
+          IsRecommended: values.IsRecommended,
+        };
+        if (values.IsPopular === "true" && values.IsRecommended === "true") {
+          popularItems.push(newItem);
+          recomandedItems.push(newItem);
+          formik.resetForm();
+          return
+
+        }
+        if (values.IsPopular === "true") {
+          popularItems.push(newItem);
+          formik.resetForm();
+        }
+        if (values.IsRecommended === "true") {
+          recomandedItems.push(newItem);
+          formik.resetForm();
+        }
+
+        console.log(newItem);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+
   return (
     <Container
       sx={{
@@ -43,7 +125,6 @@ const PopularItem = () => {
         },
       }}
     >
-        
       {/* Popular Items-------------------------------- */}
       <Box
         sx={{
@@ -64,6 +145,7 @@ const PopularItem = () => {
           Popular
         </Button>
         <Button
+          onClick={handleOpen}
           variant="text"
           sx={{
             color: "#FF9800",
@@ -74,6 +156,105 @@ const PopularItem = () => {
           <ArrowBackIosNewIcon sx={{ color: "gray" }} fontSize="small" />
           <ArrowForwardIosIcon sx={{ color: "black" }} fontSize="small" />
         </Button>
+
+        {/* --------------------------- */}
+        <Modal
+          keepMounted
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="keep-mounted-modal-title"
+          aria-describedby="keep-mounted-modal-description"
+        >
+          <Box sx={style}>
+            <form onSubmit={formik.handleSubmit}>
+              <TextField
+                className="w-full mb-4"
+                size="small"
+                label="Name"
+                variant="outlined"
+                name="name"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+              />
+              {formik.touched.name && formik.errors.name && (
+                <span className="text-sm text-red-600 pl-5">
+                  {formik.errors.name}
+                </span>
+              )}
+              <TextField
+                className="w-full mb-4"
+                size="small"
+                label="Price"
+                variant="outlined"
+                name="price"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.price}
+              />
+              {formik.touched.price && formik.errors.price && (
+                <span className="text-sm text-red-600 pl-5">
+                  {formik.errors.price}
+                </span>
+              )}
+              <TextField
+                className="w-full mb-4"
+                size="small"
+                label="ImageUrl"
+                variant="outlined"
+                name="imageUrl"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.imageUrl}
+              />
+              {formik.touched.imageUrl && formik.errors.imageUrl && (
+                <span className="text-sm text-red-600 pl-5">
+                  {formik.errors.imageUrl}
+                </span>
+              )}
+              <TextField
+                className="w-full mb-4"
+                size="small"
+                label="IsPopular"
+                variant="outlined"
+                name="IsPopular"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.IsPopular}
+              />
+              {formik.touched.IsPopular && formik.errors.IsPopular && (
+                <span className="text-sm text-red-600 pl-5">
+                  {formik.errors.IsPopular}
+                </span>
+              )}
+              <TextField
+                className="w-full mb-4"
+                size="small"
+                label="IsRecommended"
+                variant="outlined"
+                name="IsRecommended"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.IsRecommended}
+              />
+              {formik.touched.IsRecommended && formik.errors.IsRecommended && (
+                <span className="text-sm text-red-600 pl-5">
+                  {formik.errors.IsRecommended}
+                </span>
+              )}
+
+              <button
+                onClick={handleClose}
+                type="submit"
+                className="bg-fuchsia-500 rounded cursor-pointer hover:bg-fuchsia-700  py-2 px-5 w-full text-white font-bold text-lg"
+              >
+                Submit
+              </button>
+            </form>
+          </Box>
+        </Modal>
+
+        {/*     ------------------------------------- */}
       </Box>
       <Swiper
         className="mySwiper"
@@ -84,6 +265,10 @@ const PopularItem = () => {
         }}
         modules={[Pagination, Autoplay]}
         breakpoints={{
+          // When screen size is >= 300px
+          300: {
+            slidesPerView: 2, // Show 1slides
+          },
           // When screen size is >= 400px
           400: {
             slidesPerView: 2, // Show 2 slides
@@ -99,8 +284,8 @@ const PopularItem = () => {
           },
         }}
       >
-        {popularItems.map((item) => (
-          <SwiperSlide key={item}>
+        {popularItems.map((item, index) => (
+          <SwiperSlide key={index}>
             <Box
               sx={{
                 textAlign: "center",
@@ -145,6 +330,7 @@ const PopularItem = () => {
           Recomanded
         </Button>
         <Button
+          onClick={handleOpen}
           variant="text"
           sx={{
             color: "#FF9800",
@@ -165,6 +351,10 @@ const PopularItem = () => {
         }}
         modules={[Pagination, Autoplay]}
         breakpoints={{
+          // When screen size is >= 300px
+          300: {
+            slidesPerView: 2, // Show 1slides
+          },
           // When screen size is >= 400px
           400: {
             slidesPerView: 2, // Show 2 slides
@@ -181,7 +371,7 @@ const PopularItem = () => {
         }}
       >
         {recomandedItems.map((item) => (
-          <SwiperSlide key={item}>
+          <SwiperSlide key={item.Id}>
             <Box
               sx={{
                 textAlign: "center",
