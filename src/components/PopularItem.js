@@ -36,6 +36,9 @@ const style = {
     sm: 3,
     lg: 4,
   },
+  boxShadow: 24,
+  boxShadow: "#9ca3af",
+  borderRadius: 4,
 };
 
 const PopularItem = () => {
@@ -166,6 +169,7 @@ const PopularItem = () => {
 
         {/* --------------------------- */}
         <Modal
+          sx={{ boxShadow: "20px" }}
           keepMounted
           open={open}
           onClose={handleClose}
@@ -175,7 +179,10 @@ const PopularItem = () => {
           <Box sx={style}>
             <form onSubmit={formik.handleSubmit}>
               <TextField
-                className="w-full mb-4"
+                style={{
+                  width: "100%",
+                  marginBottom: "16px",
+                }}
                 size="small"
                 label="Name"
                 variant="outlined"
@@ -190,7 +197,10 @@ const PopularItem = () => {
                 </span>
               )}
               <TextField
-                className="w-full mb-4"
+                style={{
+                  width: "100%",
+                  marginBottom: "16px",
+                }}
                 size="small"
                 label="Price"
                 variant="outlined"
@@ -205,7 +215,10 @@ const PopularItem = () => {
                 </span>
               )}
               <TextField
-                className="w-full mb-4"
+                style={{
+                  width: "100%",
+                  marginBottom: "16px",
+                }}
                 size="small"
                 label="ImageUrl"
                 variant="outlined"
@@ -220,7 +233,10 @@ const PopularItem = () => {
                 </span>
               )}
               <TextField
-                className="w-full mb-4"
+                style={{
+                  width: "100%",
+                  marginBottom: "16px",
+                }}
                 size="small"
                 label="IsPopular"
                 variant="outlined"
@@ -235,7 +251,10 @@ const PopularItem = () => {
                 </span>
               )}
               <TextField
-                className="w-full mb-4"
+                style={{
+                  width: "100%",
+                  marginBottom: "16px",
+                }}
                 size="small"
                 label="IsRecommended"
                 variant="outlined"

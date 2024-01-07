@@ -14,7 +14,7 @@ const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-    marginRight: theme.spacing(2),
+  marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
@@ -58,7 +58,13 @@ const Navbar = () => {
       }}
     >
       <div className="flex justify-between items-center my-5">
-        <Typography variant="h5" component="div" color="black" fontWeight="800" marginRight="20px">
+        <Typography
+          variant="h5"
+          component="div"
+          color="black"
+          fontWeight="800"
+          marginRight="20px"
+        >
           pti.
         </Typography>
         <Box
@@ -66,7 +72,17 @@ const Navbar = () => {
             display: "flex",
           }}
         >
-          <Search className="bg-white w-full lg:w-[500px] text-black">
+          <Search
+            sx={{
+              backgroundColor: "white",
+              width: {
+                xs: "100%",
+                sm:"400px",
+                lg: "500px",
+              },
+              color: "black",
+            }}
+          >
             <SearchIconWrapper>
               <SearchIcon sx={{ color: "#FF9800" }} />
             </SearchIconWrapper>
@@ -75,9 +91,11 @@ const Navbar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Box sx={{
-            backgroundColor:"white"
-          }}>
+          <Box
+            sx={{
+              backgroundColor: "white",
+            }}
+          >
             <MenuDropdown />
           </Box>
         </Box>

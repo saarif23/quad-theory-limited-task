@@ -28,7 +28,7 @@ const Footer = () => {
       >
         <div className="relative lg:pl-20 max-lg:pt-10 ">
           <input
-            className="py-3 px-3 rounded-xl max-md:px-5 w-[380px] mx-auto lg:w-[500px] text-sm shadow-xl"
+            className="py-3 px-3 rounded-xl max-md:px-5 w-[360px]   md:w-400px mx-auto lg:w-[500px] text-sm shadow-xl"
             type="text"
             placeholder="Enter Your Email"
           ></input>
@@ -77,21 +77,61 @@ const Footer = () => {
               <Box>
                 <IconButton
                   aria-label="google"
-                  className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
+
+                  // className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
                 >
-                  <GoogleIcon fontSize="small" />
+                  <GoogleIcon
+                    fontSize="large"
+                    sx={{
+                      color: {
+                        xs: "#FFFFFFCC",
+                        sm: "#ef4618ec",
+                      },
+                      backgroundColor: {
+                        xs: "#ef4618ec",
+                        sm: "#FFFFFFCC",
+                      },
+                      padding: "8px",
+                      borderRadius: "100%",
+                      marginRight: "2px",
+                    }}
+                  />
                 </IconButton>
-                <IconButton
-                  aria-label="twitter"
-                  className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
-                >
-                  <TwitterIcon fontSize="small" />
+                <IconButton aria-label="twitter">
+                  <TwitterIcon
+                    fontSize="large"
+                    sx={{
+                      color: {
+                        xs: "#FFFFFFCC",
+                        sm: "#ef4618ec",
+                      },
+                      backgroundColor: {
+                        xs: "#ef4618ec",
+                        sm: "#FFFFFFCC",
+                      },
+                      padding: "8px",
+                      borderRadius: "100%",
+                      marginRight: "2px",
+                    }}
+                  />
                 </IconButton>
-                <IconButton
-                  aria-label="instragram"
-                  className=" text-white/80 lg:text-[#ef4618ec] max-lg:bg-[#ef4618ec] bg-white/70 mr-2"
-                >
-                  <InstagramIcon fontSize="small" />
+                <IconButton aria-label="instragram">
+                  <InstagramIcon
+                    fontSize="large"
+                    sx={{
+                      color: {
+                        xs: "#FFFFFFCC",
+                        sm: "#ef4618ec",
+                      },
+                      backgroundColor: {
+                        xs: "#ef4618ec",
+                        sm: "#FFFFFFCC",
+                      },
+                      padding: "8px",
+                      borderRadius: "100%",
+                      marginRight: "2px",
+                    }}
+                  />
                 </IconButton>
               </Box>
             </Box>
